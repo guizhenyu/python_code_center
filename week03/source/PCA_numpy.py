@@ -16,7 +16,8 @@ class PCA():
         idx = np.argsort(-eig_vals)
         # 降维矩阵
         self.components_ = eig_vectors[:,idx[:self.n_components]]
-        # 对X进行降维
+
+         # 对X进行降维
         return np.dot(X,self.components_)
  
 # 调用
