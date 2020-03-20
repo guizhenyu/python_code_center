@@ -52,10 +52,48 @@ class NeuralNetWork:
         print(final_outputs)
         return final_outputs
 
+# initalize nural network
 input_nodes = 784
 hidden_nodes = 200
 output_nodes = 10
 learningg_rate =  0.1
 n = NeuralNetWork(input_nodes, hidden_nodes, output_nodes, learningg_rate)
 
+#read training data
 training_data_file = open("dataset/mnist_train")
+training_data_list = training_data_file.readlines()
+training_data_file.close()
+
+epochs = 5
+for e in range(epochs):
+    for record in training_data_list:
+        all_values = record.split(',')
+        inputs = (numpy.asfarray(all_values[1:])) / 255 * 0.99 + 0.01
+        # set the relationship between image and number
+        targets = numpy.zeros(output_nodes) + 0.01
+        targets[int(all_values[0])] = 0.99
+        n.train(inputs, targets)
+
+test_data_file = open("dataset/mnist_test.csv")
+test_data_list = test_data_file.readlines()
+test_data_file.close()
+scores = []
+for record in test_data_list:
+    all_values = record.strip().split(',')
+    target = int(all_values[0])
+
+    inputs = (numpy.asfarray(all_values[1:])) / 255 * 0.99 + 0.01
+    test_result = n.query(inputs)
+    label = numpy.argmax(test_result)
+
+    print("the recognition result of neural network is ", label)
+    if target == label:
+        scores.append(1)
+    else:
+        scores.append(0)
+    print(scores)
+
+scores_arry = numpy.asfarray(scores)
+print("perfermances = ", scores_arry.sum()/ scores_arry.size )
+
+
