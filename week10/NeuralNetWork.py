@@ -19,7 +19,7 @@ class NeuralNetWork:
 
     def train(self, inputs_list, targets_list):
         inputs = numpy.array(inputs_list, ndmin=2).T
-        targets = numpy.array(targets_list, ndmin=2).T
+        targets_list = numpy.array(targets_list, ndmin=2).T
 
         hidden_inputs = numpy.dot(self.wih, inputs)
 
