@@ -24,7 +24,7 @@ def GaussianNoise(src, means, sigma, percentage):
             NosieImg[randX, randY] = 255
 
     return NosieImg
-img_path = "/root/PycharmProjects/python_code_center/learn.jpg"
+img_path = "../learn.jpg"
 img = cv2.imread(img_path, 0)
 img1 = GaussianNoise(img, 4, 8, 0.5)
 img = cv2.imread(img_path)

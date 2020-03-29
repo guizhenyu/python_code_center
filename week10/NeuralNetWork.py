@@ -60,7 +60,7 @@ learningg_rate =  0.1
 n = NeuralNetWork(input_nodes, hidden_nodes, output_nodes, learningg_rate)
 
 #read training data
-training_data_file = open("dataset/mnist_train")
+training_data_file = open("dataset/mnist_train.csv")
 training_data_list = training_data_file.readlines()
 training_data_file.close()
 
@@ -74,7 +74,7 @@ for e in range(epochs):
         targets[int(all_values[0])] = 0.99
         n.train(inputs, targets)
 
-test_data_file = open("dataset/mnist_test.csv")
+test_data_file = open("./dataset/mnist_test.csv")
 test_data_list = test_data_file.readlines()
 test_data_file.close()
 scores = []
